@@ -1,0 +1,11 @@
+.idea
+build
+nbproject/private
+nbbuild
+nbdist
+nb-configuration.xml
+clipper.db
+*.class
+*.jar
+target/
+dependency-reduced-pom.xml
