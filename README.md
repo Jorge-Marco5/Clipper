@@ -7,9 +7,9 @@
 
 
 
-Aplicacion para gestionar el portapapeles y lista de emojis para copiar. Programada en Java sqlite como base de datos.
+Aplicación para gestionar el portapapeles y lista de emojis para copiar. Programada en lenguaje Java Version 21, y usa sqlite como base de datos.
 
-El historial se almacena en la base de datos sqlite por lo que las copias se mantienen incluso si se cierra la aplicacion, puedes eliminarlas manualmente si lo deseas.
+El historial se almacena en la base de datos sqlite por lo que los registros se mantienen incluso si se cierra la aplicacion, puedes eliminar las copias manualmente si lo deseas.
 
 <p align="center" width="500">
    <img align="center" width="500" style="border-radius: 10px;" src="assets/dashboard.png" />
@@ -29,7 +29,7 @@ El historial se almacena en la base de datos sqlite por lo que las copias se man
 - Java 21.0.5 JBR
 - Maven
 
-## Instalacion
+## Instalación
 
 ```bash
 ### Clonar el repositorio
