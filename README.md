@@ -5,158 +5,93 @@
    <h3 align="center">Clipper</h3>
 </p>
 
-Aplicacion para gestionar el portapapeles y lista de emojis para copiar. Programada en Java 21 y usa sqlite como base de datos.
+Aplicación moderna para gestionar el historial del portapapeles (texto e imágenes) y una colección de emojis para copiar rápidamente. Desarrollada en **Java 21**, utiliza **SQLite** para la persistencia de datos y **FlatLaf** para una interfaz gráfica limpia y moderna.
 
-El historial se almacena en la base de datos sqlite por lo que los registros se mantienen incluso si se cierra la aplicacion, puedes eliminar las copias manualmente si lo deseas.
+El historial se almacena localmente, permitiendo recuperar recortes incluso después de reiniciar la aplicación.
 
 <p align="center" width="500">
    <img align="center" width="500" style="border-radius: 10px;" src="docs/dashboard.png" />
    <h3 align="center">Dashboard</h3>
 </p>
 
-## Características
+## Características Principales
 
-1. **Portapapeles**: La aplicación monitoriza automáticamente lo que copias (Ctrl+C).
-2. **Historial**: Abre la aplicación para ver y reutilizar textos copiados anteriormente.
-3. **Pegado Rápido**: Haz clic en cualquier elemento del historial para minimizar la app y pegarlo automáticamente donde estabas escribiendo.
-4. **Emojis**: Navega por las pestañas de emojis, haz clic en uno para pegarlo automáticamente.
-5. **Gestión**: Puedes eliminar elementos del historial.
+1.  **Portapapeles Mixto**: Monitoriza y guarda automáticamente tanto **texto** como **imágenes** que copias (Ctrl+C).
+2.  **Historial Visual**: Visualiza tu historial con tarjetas que muestran previsualizaciones de imágenes y fragmentos de texto.
+3.  **Pegado Rápido**: Al hacer clic en un elemento del historial, la ventana se minimiza y el contenido se pega automáticamente en tu aplicación activa.
+4.  **Emojis**: Panel integrado con categorías de emojis listos para copiar con un clic.
+5.  **Gestión**: Posibilidad de eliminar elementos individuales o limpiar todo el historial.
+6.  **Persistencia**: Base de datos SQLite integrada para mantener tu historial seguro entre sesiones.
 
 ## Requisitos
 
-- Java 21.0.5 JBR
-- Maven
+- **Java 21** (JDK/JRE 21+)
+- **Maven** (para construir el proyecto)
 
 ## Instalación
 
-Clonar el repositorio
+1. Clonar el repositorio:
 
-```bash
-git clone https://github.com/Jorge-Marco5/Clipper.git
-```
+   ```bash
+   git clone https://github.com/Jorge-Marco5/Clipper.git
+   ```
 
-Cambiar al directorio del proyecto
+2. Acceder al directorio:
 
-```bash
-cd Clipper
-```
-
-## Construcción
-
-.jar y .exe (Windows)
-
-```
-mvn clean package
-```
-
-.deb (Linux)
-
-```
-./script/build_linux.sh
-```
-
-## Ejecución
-
-Una vez compilado, puedes iniciar la aplicación desde la carpeta `target`:
-
-```bash
-java -jar target/Clipper-1.0-SNAPSHOT.jar
-```
-
-## Paquetes# Clipper
-
-<p align="center" width="300">
-   <img align="center" width="200" style="border-radius: 10px;" src="src/main/resources/images/logo.png" />
-   <h3 align="center">Clipper</h3>
-</p>
-
-Aplicacion para gestionar el portapapeles y lista de emojis para copiar. Programada en Java sqlite como base de datos.
-
-El historial se almacena en la base de datos sqlite por lo que las copias se mantienen incluso si se cierra la aplicacion, puedes eliminarlas manualmente si lo deseas.
-
-<p align="center" width="500">
-   <img align="center" width="500" style="border-radius: 10px;" src="docs/dashboard.png" />
-   <h3 align="center">Dashboard</h3>
-</p>
-
-## Caracteristicas
-
-1. **Portapapeles**: La aplicación monitoriza automáticamente lo que copias (Ctrl+C).
-2. **Historial**: Abre la aplicación para ver y reutilizar textos copiados anteriormente.
-3. **Pegado Rápido**: Haz clic en cualquier elemento del historial para minimizar la app y pegarlo automáticamente donde estabas escribiendo.
-4. **Emojis**: Navega por las pestañas de emojis, haz clic en uno para pegarlo automáticamente.
-5. **Gestión**: Puedes eliminar elementos del historial.
-
-## Requisitos
-
-- Java 21.0.5 JBR
-- Maven
-
-## Instalacion
-
-Clonar el repositorio
-
-```bash
-git clone https://github.com/Jorge-Marco5/Clipper.git
-```
-
-Cambiar al directorio del proyecto
-
-```bash
-cd Clipper
-```
+   ```bash
+   cd Clipper
+   ```
 
 ## Construcción
 
-.jar y .exe (Windows)
+### Generar JAR y Ejecutable Windows (.exe)
 
-```
+Este proyecto utiliza el plugin `launch4j` para generar un ejecutable de Windows.
+
+```bash
 mvn clean package
 ```
 
-.deb (Linux)
+Esto generará:
 
-```
+- `target/Clipper-1.0-SNAPSHOT.jar` (Universal)
+- `target/Clipper.exe` (Windows)
+
+### Generar Paquete Linux (.deb)
+
+Para crear un instalador `.deb` para distribuciones basadas en Debian/Ubuntu:
+
+```bash
 ./script/build_linux.sh
 ```
 
-## Ejecución
+Esto generará:
 
-Una vez compilado, puedes iniciar la aplicación desde la carpeta `target`:
+- `target/dist/Clipper-1.0-SNAPSHOT.deb`
 
-```bash
-java -jar target/Clipper-1.0-SNAPSHOT.jar
-```
+## Ejecución y Archivos Generados
 
-## Paquetes
-
-Windows
+**Windows:**
 
 ```
 ./target/Clipper.exe
 ```
 
-Linux
+**Linux (Instalado desde .deb):**
+Busca "Clipper" en tu menú de aplicaciones o ejecuta `clipper` en la terminal.
 
-```
-./target/dist/Clipper-1.0-SNAPSHOT.deb
-```
+**Ejecución directa (JAR):**
 
-## Licencia
-
-[MIT](LICENSE)
-
-Windows
-
-```
-./target/Clipper.exe
+```bash
+java -jar target/Clipper-1.0-SNAPSHOT.jar
 ```
 
-Linux
+## Tecnologías
 
-```
-./target/dist/Clipper-1.0-SNAPSHOT.deb
-```
+- Java 21
+- Swing UI / FlatLaf (Tema Dark/Light)
+- SQLite (Base de datos)
+- Maven (Gestión de dependencias)
 
 ## Licencia
 
