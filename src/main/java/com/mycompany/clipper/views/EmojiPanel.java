@@ -26,6 +26,8 @@ public class EmojiPanel extends JPanel {
                 FlatClientProperties.TABBED_PANE_TAB_TYPE_CARD);
 
         emojiTabsController emojiController = new emojiTabsController();
+        emojiTabs.setFont(new Font("Inter, SansSerif", Font.BOLD, 14));
+
         Map<String, List<emojiTabsController.Emoji>> groupedEmojis = emojiController.getEmojisByGroup();
 
         for (Map.Entry<String, List<emojiTabsController.Emoji>> entry : groupedEmojis.entrySet()) {
@@ -42,6 +44,7 @@ public class EmojiPanel extends JPanel {
 
     private JScrollPane createEmojiGrid(List<emojiTabsController.Emoji> emojis) {
         JPanel gridPanel = new JPanel();
+        gridPanel.setBackground(Color.decode("#000000")); // Pure Black for consistency
         int columns = 6;
         gridPanel.setLayout(new GridLayout(0, columns, 2, 2));
         gridPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,7 +53,7 @@ public class EmojiPanel extends JPanel {
             String htmlEmoji = "<html><span style='font-size:20px; display: flex; align-items: center; text-align: center;'>"
                     + emoji.getCharacter() + "</span></html>";
             JButton emojiBtn = new JButton(htmlEmoji);
-            emojiBtn.setForeground(Color.BLACK);
+            emojiBtn.setForeground(Color.WHITE);
 
             emojiBtn.setFont(FontLoader.getEmojiFont(24));
 

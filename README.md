@@ -5,24 +5,22 @@
    <h3 align="center">Clipper</h3>
 </p>
 
-
-
 Aplicacion para gestionar el portapapeles y lista de emojis para copiar. Programada en Java sqlite como base de datos.
 
 El historial se almacena en la base de datos sqlite por lo que las copias se mantienen incluso si se cierra la aplicacion, puedes eliminarlas manualmente si lo deseas.
 
 <p align="center" width="500">
-   <img align="center" width="500" style="border-radius: 10px;" src="assets/dashboard.png" />
+   <img align="center" width="500" style="border-radius: 10px;" src="docs/dashboard.png" />
    <h3 align="center">Dashboard</h3>
 </p>
 
 ## Caracteristicas
 
-- Guardar texto en el portapapeles.
-- Ver historial del portapapeles.
-- Eliminar texto del portapapeles.
-- Eliminar todo el portapapeles.
-- Listado de emojis.
+1. **Portapapeles**: La aplicación monitoriza automáticamente lo que copias (Ctrl+C).
+2. **Historial**: Abre la aplicación para ver y reutilizar textos copiados anteriormente.
+3. **Pegado Rápido**: Haz clic en cualquier elemento del historial para minimizar la app y pegarlo automáticamente donde estabas escribiendo.
+4. **Emojis**: Navega por las pestañas de emojis, haz clic en uno para pegarlo automáticamente.
+5. **Gestión**: Puedes eliminar elementos del historial.
 
 ## Requisitos
 
@@ -31,24 +29,33 @@ El historial se almacena en la base de datos sqlite por lo que las copias se man
 
 ## Instalacion
 
-```bash
-### Clonar el repositorio
+Clonar el repositorio
 
+```bash
 git clone https://github.com/Jorge-Marco5/Clipper.git
+```
 
-### Cambiar al directorio del proyecto
-
-cd Clipper
-
-### Compilar
-
-Para generar el ejecutable (JAR con dependencias incluidas):
+Cambiar al directorio del proyecto
 
 ```bash
+cd Clipper
+```
+
+## Construcción
+
+.jar y .exe (Windows)
+
+```
 mvn clean package
 ```
 
-### Ejecución
+.deb (Linux)
+
+```
+./script/build_linux.sh
+```
+
+## Ejecución
 
 Una vez compilado, puedes iniciar la aplicación desde la carpeta `target`:
 
@@ -56,13 +63,19 @@ Una vez compilado, puedes iniciar la aplicación desde la carpeta `target`:
 java -jar target/Clipper-1.0-SNAPSHOT.jar
 ```
 
-## Uso
+## Paquetes
 
-1. **Portapapeles**: La aplicación monitoriza automáticamente lo que copias (Ctrl+C).
-2. **Historial**: Abre la aplicación para ver y reutilizar textos copiados anteriormente.
-3. **Pegado Rápido**: Haz clic en cualquier elemento del historial para minimizar la app y pegarlo automáticamente donde estabas escribiendo.
-4. **Emojis**: Navega por las pestañas de emojis, haz clic en uno para pegarlo automáticamente.
-5. **Gestión**: Puedes fijar o eliminar elementos del historial.
+Windows
+
+```
+./target/Clipper.exe
+```
+
+Linux
+
+```
+./target/dist/Clipper-1.0-SNAPSHOT.deb
+```
 
 ## Licencia
 

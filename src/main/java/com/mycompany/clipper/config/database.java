@@ -9,7 +9,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.DatabaseMetaData;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class database {
+
+    private static final Logger logger = Logger.getLogger(database.class.getName());
 
     public static void connect() {
         // La cadena de conexión (URL)
@@ -24,12 +29,12 @@ public class database {
 
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("El nombre del driver es: " + meta.getDriverName());
-                System.out.println("¡Conexión a SQLite establecida exitosamente!");
+                // System.out.println("El nombre del driver es: " + meta.getDriverName());
+                // System.out.println("¡Conexión a SQLite establecida exitosamente!");
             }
 
         } catch (SQLException e) {
-            System.out.println("Ocurrió un error al conectar: " + e.getMessage());
+            logger.log(Level.SEVERE, "Ocurrió un error al conectar: " + e.getMessage(), e);
         }
     }
 

@@ -22,9 +22,16 @@ public class Portapapeles {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:clipper.db")) {
 
             // Creación de la tabla si no existe
+            // Creación de la tabla (REINICIO ESTRUCTURA según petición)
+            // Eliminamos la tabla anterior para asegurar la nueva estructura limpia
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute("DROP TABLE IF EXISTS portapapeles");
+            }
+
             String createTableSQL = "CREATE TABLE IF NOT EXISTS portapapeles (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "texto TEXT NOT NULL," +
+                    "texto TEXT," +
+                    "imagen BLOB," +
                     "fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                     ")";
 
@@ -36,22 +43,39 @@ public class Portapapeles {
             conn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+            // System.out.println("Error al conectar a la base de datos: " +
+            // e.getMessage());
         }
     }
 
     public void insertPortapapeles(String texto) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:clipper.db")) {
             // Insertar datos
-            String insertSQL = "INSERT INTO portapapeles (texto, fecha) VALUES (?, CURRENT_TIMESTAMP)";
+            // Insertar datos de TEXTO
+            String insertSQL = "INSERT INTO portapapeles (texto, imagen, fecha) VALUES (?, NULL, CURRENT_TIMESTAMP)";
 
             try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
                 pstmt.setString(1, texto);
                 pstmt.executeUpdate();
-                // JOptionPane.showMessageDialog(null, "Texto guardado en portapapeles");
             }
         } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+            // System.out.println("Error al conectar a la base de datos: " +
+            // e.getMessage());
+        }
+    }
+
+    public void insertPortapapeles(byte[] imagenBytes) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:clipper.db")) {
+            // Insertar datos de IMAGEN
+            String insertSQL = "INSERT INTO portapapeles (texto, imagen, fecha) VALUES (NULL, ?, CURRENT_TIMESTAMP)";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+                pstmt.setBytes(1, imagenBytes);
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            // System.out.println("Error al conectar a la base de datos: " +
+            // e.getMessage());
         }
     }
 
@@ -61,15 +85,16 @@ public class Portapapeles {
         List<ClipboardEntry> clipboardEntries = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:clipper.db")) {
             // Consultar datos
-            String selectSQL = "SELECT id, texto, fecha FROM portapapeles ORDER BY fecha DESC";
+            String selectSQL = "SELECT id, texto, imagen, fecha FROM portapapeles ORDER BY fecha DESC";
 
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery(selectSQL)) {
                     while (rs.next()) {
                         int id = rs.getInt("id");
                         String texto = rs.getString("texto");
+                        byte[] imagen = rs.getBytes("imagen");
                         String fecha = rs.getString("fecha");
-                        clipboardEntries.add(new ClipboardEntry(id, texto, fecha));
+                        clipboardEntries.add(new ClipboardEntry(id, texto, imagen, fecha));
                     }
                 }
             }
@@ -93,7 +118,8 @@ public class Portapapeles {
             conn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+            // System.out.println("Error al conectar a la base de datos: " +
+            // e.getMessage());
         }
     }
 
@@ -111,7 +137,8 @@ public class Portapapeles {
             conn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+            // System.out.println("Error al conectar a la base de datos: " +
+            // e.getMessage());
         }
     }
 

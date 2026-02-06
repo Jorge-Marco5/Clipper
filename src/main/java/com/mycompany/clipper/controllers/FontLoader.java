@@ -28,7 +28,7 @@ public class FontLoader {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             boolean registered = ge.registerFont(font);
 
-            System.out.println("✅ Fuente cargada: " + font.getFontName());
+            // System.out.println("✅ Fuente cargada: " + font.getFontName());
             // Si registered es false, NO importa, porque usaremos el objeto 'font'
             // directamente
 
